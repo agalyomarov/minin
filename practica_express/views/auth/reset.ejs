@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<%- include('../partials/head'); %>
+
+<body>
+  <%- include('../partials/navbar'); %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mt-3">
+        <h1>Востоновить пароль</h1>
+      </div>
+      <div class="col-6 offset-3 mt-3">
+        <form method="post" action="/auth/login">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email">
+          </div>
+          <div class="mb-3">
+            <input type="hidden" name="_csrf" value="<%= csrf%>">
+            <button type="submit" class="btn btn-success">получить код</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer'); %>
+</body>
+
+</html>

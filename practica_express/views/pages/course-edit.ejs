@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<%- include('../partials/head'); %>
+
+<body>
+  <%- include('../partials/navbar'); %>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-12 text-center">
+        <h1>Редактировать курс <%= course.title %></h1>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-6 offset-3">
+        <form action="/courses/edit" method="POST">
+          <div class="mb-3">
+            <label class="form-label">Название курсы</label>
+            <input id="title" name="title" type="text" class="form-control" required value="<%= course.title %>">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Цена курса</label>
+            <input type="number" name="price" class="form-control" required value="<%= course.price %>">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">URL картинки</label>
+            <input type="text" name="img" class="form-control" required min="1" value="<%= course.img %>">
+          </div>
+          <input type="hidden" name="id" value="<%= course._id %>">
+          <input type="hidden" name="_csrf" value="<%= csrf%>">
+          <button type="submit" class="btn btn-primary">Изменить</button>
+        </form>
+        <form action="/courses/remove" method="POST">
+          <input type="hidden" name="id" value="<%= course._id %>">
+          <input type="hidden" name="_csrf" value="<%= csrf%>">
+          <button type="submit" class="btn btn-danger float-right mt-3">Удалить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%- include('../partials/footer'); %>
+</body>
+
+</html>

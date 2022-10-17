@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<%- include('../partials/head'); %>
+
+<body>
+  <%- include('../partials/navbar'); %>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-12">
+        <h1>Корзина</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <% if(courses.length){%>
+        <table class="table table-striped" id="list_courses">
+          <thead>
+            <tr>
+              <th scope="col">№</th>
+              <th scope="col">Название</th>
+              <th scope="col">Количество</th>
+              <th scope="col">Цена</th>
+              <th scope="col">Действие</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% courses.map((course,index)=>{ %>
+            <tr>
+              <th scope="row"><%=++index%></th>
+              <td><%= course.course_id.title %></td>
+              <td><%= course.count %></td>
+              <td class="price_course"><%= course.course_id.price %></td>
+              <td><button type="button" class="btn btn-success btn-sm course_delete_from_card" data-id="<%=course.course_id._id%>" data-csrf="<%= csrf%>">Удалить</button></td>
+            </tr>
+            <% })%>
+          </tbody>
+        </table>
+        <br>
+        <p id="total_amount">Обшая цена: <span class="price_course"><%= total_price %></span> </p>
+        <form action="/order" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrf%>">
+          <button class="btn btn-info btn_made_order" type="submit">Сделать заказ</button>
+        </form>
+        <%}else{%>
+        <p>Корзина пуста</p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <%- include('../partials/footer'); %>
+</body>
+
+</html>

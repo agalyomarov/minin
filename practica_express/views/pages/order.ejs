@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<%- include('../partials/head'); %>
+
+<body>
+  <%- include('../partials/navbar'); %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mt-3">
+        <h1>Мои заказы</h1>
+      </div>
+      <%if(orders.length){%>
+      <% orders.forEach((c,i)=>{ %>
+      <div class="col-4 mt-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fs-6">id: <%=c._id%></h5>
+            <p class="card-text date"> <%=c.date%></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <% c.courses.forEach((e,idx)=>{ %>
+            <li class="list-group-item"><%=idx+1%>. <%=e.course.title%></li>
+            <% }) %>
+          </ul>
+          <div class="card-body">
+            <p class="fs-3 price_course"><%=c.total_price%></p>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      <% } else {%>
+      <p>Заказов нет</p>
+      <% } %>
+    </div>
+  </div>
+  <%- include('../partials/footer'); %>
+</body>
+
+</html>

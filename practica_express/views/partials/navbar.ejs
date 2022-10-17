@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link <% if(typeof isHome !== 'undefined' && isHome) { %> active <% } %>" href="/">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <% if(typeof isCourses !== 'undefined' && isCourses) { %> active <% } %>" href="/courses">Курсы</a>
+        </li>
+        <% if(isAuth){%>
+        <li class="nav-item">
+          <a class="nav-link <% if(typeof isAdd !== 'undefined' && isAdd) { %> active <% } %>" href="/add">Добавить курсы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <% if(typeof isCard !== 'undefined' && isCard) { %> active <% } %>" href="/card">Корзина</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <% if(typeof isOrder !== 'undefined' && isOrder) { %> active <% } %>" href="/order">Заказы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">Выйти</a>
+        </li>
+        <% }else{ %>
+        <li class="nav-item">
+          <a class="nav-link <% if(typeof isLogin !== 'undefined' && isLogin) { %> active <% } %>" href="/auth/login">Войти</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <% if(typeof isRegister !== 'undefined' && isRegister) { %> active <% } %>" href="/auth/register">Регистрация</a>
+        </li>
+        <% } %>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">поиск</button>
+      </form>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<%- include('../partials/head'); %>
+
+<body>
+  <%- include('../partials/navbar'); %>
+  <div class="container">
+
+    <div class="row mt-3">
+      <div class="col-12z text-center">
+        <h1>Курсы</h1>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <% if(courses.length){ %>
+      <% courses.forEach(function(course){%>
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <img src="<%= course.img %>" class="card-img-top" style="height:200px;width:auto;object-fit:cover" alt="<%= course.title %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= course.title %></h5>
+            <p class="card-text price_course"><%= course.price %></p>
+            <a target="_blank" href="/courses/<%= course._id %>" class="btn btn-warning">Открыть курс</a>
+            <% if(isAuth){ %>
+            <br>
+            <br>
+            <a href="/courses/<%= course._id %>/edit?allow=true" class="btn btn-info">Редактировать курс</a>
+            <br>
+            <br>
+            <form action="/card/add" method="post">
+              <input type="hidden" name="id" value="<%= course._id %>">
+              <input type="hidden" name="_csrf" value="<%= csrf%>">
+              <button type="submit" class="btn btn-success">Купить</button>
+            </form>
+            <% }  %>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      <% } else { %>
+      <div class="col-12">
+        <p>Курсы пока нет</p>
+      </div>
+      <% } %>
+    </div>
+
+  </div>
+  <%- include('../partials/footer'); %>
+</body>
+
+</html>

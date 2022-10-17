@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<%- include('../partials/head'); %>
+
+<body>
+  <%- include('../partials/navbar'); %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mt-3">
+        <h1>Регистрация</h1>
+      </div>
+      <div class="col-6 offset-3 mt-3">
+        <form method="post" action="/auth/register">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email">
+            <small class="text-danger ms-2"><% if(typeof errors !== "undefined"){%><%= errors %><%}%></small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Пароль</label>
+            <input type="password" class="form-control" name="password">
+          </div>
+          <div class="mb-3">
+            <input type="hidden" name="_csrf" value="<%= csrf%>">
+              <button type="submit" class="btn btn-success">Регистрация</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer'); %>
+</body>
+
+</html>
